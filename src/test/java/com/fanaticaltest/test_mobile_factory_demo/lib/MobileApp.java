@@ -10,11 +10,15 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
 
 public class MobileApp {
 
+    private final Logger logger = LoggerFactory.getLogger(MobileApp.class);
     private Property prop = new Property();
     private IOSDriver driver;
     private String urlAppium = prop.read("appium_server_url");
@@ -37,28 +41,33 @@ public class MobileApp {
 
         URL urlAppiumServer = new URL(urlAppium);
         driver = new IOSDriver(urlAppiumServer, desiredCapabilities);
+        logger.info("Before scenario instantiate.");
     }
 
     public void afterScenario()
     {
         driver.quit();
+        logger.info("After scenario instantiate.");
     }
 
     public void fillField(String value, By by)
     {
         MobileElement selectedField = (MobileElement) driver.findElement(by);
         selectedField.sendKeys(value);
+        logger.info("Fill field {} with value {}.", by, value);
     }
 
     public void tapButton(By by, int fingers, int durationInMillisecond)
     {
         MobileElement selectedButton = (MobileElement) driver.findElement(by);
         selectedButton.tap(fingers,durationInMillisecond);
+        logger.info("Tap button {} with {} finger(s) with a duration {} millisecond." , by, fingers, durationInMillisecond);
     }
 
     public void assertTextInElementBy(String value, By by)
     {
         MobileElement resultField = (MobileElement) driver.findElement(by);
         assertThat(resultField.getText(), containsString(value));
+        logger.info("Assert text in the element {} with value {}.", by, value);
     }
 }
