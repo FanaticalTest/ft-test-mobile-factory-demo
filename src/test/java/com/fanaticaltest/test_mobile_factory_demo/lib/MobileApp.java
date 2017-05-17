@@ -15,18 +15,25 @@ import static org.hamcrest.CoreMatchers.containsString;
 
 public class MobileApp {
 
+    private Property prop = new Property();
     private IOSDriver driver;
-    private String urlAppium = "http://docker.sak:4723/wd/hub";
+    private String urlAppium = prop.read("appium_server_url");
+    private String urlAppUnderTest = prop.read("app_under_test_url");
+    private String platformName = prop.read("platform_name");
+    private String platformVersion = prop.read("platform_version");
+    private String deviceName = prop.read("device_name");
+    private boolean noReset = Boolean.parseBoolean(prop.read("capability_no_reset"));
+    private String appiumVersion = prop.read("appium_version");
 
     public void beforeScenario() throws MalformedURLException
     {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.3");
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
-        desiredCapabilities.setCapability(MobileCapabilityType.APP, "http://appium.s3.amazonaws.com/TestApp7.1.app.zip");
-        desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, true);
-        desiredCapabilities.setCapability("appiumVersion", "1.6.4");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, platformName);
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
+        desiredCapabilities.setCapability(MobileCapabilityType.APP, urlAppUnderTest);
+        desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, noReset);
+        desiredCapabilities.setCapability("appiumVersion", appiumVersion);
 
         URL urlAppiumServer = new URL(urlAppium);
         driver = new IOSDriver(urlAppiumServer, desiredCapabilities);
@@ -43,10 +50,10 @@ public class MobileApp {
         selectedField.sendKeys(value);
     }
 
-    public void clickButton(By by)
+    public void tapButton(By by, int fingers, int durationInMillisecond)
     {
         MobileElement selectedButton = (MobileElement) driver.findElement(by);
-        selectedButton.tap(1,1000);
+        selectedButton.tap(fingers,durationInMillisecond);
     }
 
     public void assertTextInElementBy(String value, By by)
