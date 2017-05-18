@@ -6,7 +6,7 @@
 
     <groupId>com.fanaticaltest.mobileFactoryDemo</groupId>
     <artifactId>ft-test-mobile-factory-demo</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>ft-test-mobile-factory-demo</name>
     <description>FanaticalTest Test Mobile Factory Demo using Appiumn</description>

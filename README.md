@@ -15,6 +15,9 @@
 * Type the following command:
 ```
 mvn clean verify -Dtest=CukesRunner > log.txt
+mvn clean verify -Dtest=CukesRunner -Dcucumber.options="-t @Project=MobileApp" > log.txt
+mvn clean verify -Dtest=CukesRunner -Dcucumber.options="-t @Feature=CalculateSum" > log.txt
+mvn clean verify -Dtest=CukesRunner -Dcucumber.options="-t @Id=B.1.1" > log.txt
 ```
 
 ## Reference
