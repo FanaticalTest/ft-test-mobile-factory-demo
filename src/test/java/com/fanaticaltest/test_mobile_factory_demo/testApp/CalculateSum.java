@@ -23,6 +23,7 @@ public class CalculateSum  extends MobileApp{
     public void EnterSecondValue(String val)
     {
         fillField(val,SECOND_FIELD);
+        getIntermediateScreenshots("mid");
         tapButton(COMPUTE_BUTTON,1,tapDurationMillisecond);
     }
 
