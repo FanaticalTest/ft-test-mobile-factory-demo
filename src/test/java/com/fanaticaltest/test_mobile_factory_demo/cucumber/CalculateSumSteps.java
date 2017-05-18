@@ -37,8 +37,23 @@ public class CalculateSumSteps extends CalculateSum{
         EnterSecondValue(secondVal);
     }
 
-    @Then("^the user should see the sum equal to \"([^\"]*)\"$")
-    public void the_user_should_see_the_sum_equal_to(String sumResult) throws Throwable {
+    @Then("^a user should see the sum equal to \"([^\"]*)\"$")
+    public void a_user_should_see_the_sum_equal_to(String sumResult) throws Throwable {
+        CheckSumValue(sumResult);
+    }
+
+    @When("^a user is tapping Show alert$")
+    public void a_user_is_tapping_Show_alert() throws Throwable {
+        TapLinkShowAlert();
+    }
+
+    @When("^a user is tapping on OK$")
+    public void a_user_is_tapping_on_OK() throws Throwable {
+        TapOkShowAlert();
+    }
+
+    @Then("^a user should see in the result sum \"([^\"]*)\"$")
+    public void a_user_should_see_in_the_result_sum(String sumResult) throws Throwable {
         CheckSumValue(sumResult);
     }
 }

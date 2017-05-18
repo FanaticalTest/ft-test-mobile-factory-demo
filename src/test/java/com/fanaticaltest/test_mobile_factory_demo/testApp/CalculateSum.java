@@ -14,6 +14,8 @@ public class CalculateSum  extends MobileApp{
     private static final By SECOND_FIELD = By.name("IntegerB");
     private static final By COMPUTE_BUTTON = By.name("ComputeSumButton");
     private static final By ANSWER_FIELD = By.name("Answer");
+    private static final By LINK_SHOW_ALERT = By.name("show alert");
+    private static final By ALERT_OK_BUTTON = By.name("OK");
 
     public void EnterFirstValue(String val)
     {
@@ -30,5 +32,15 @@ public class CalculateSum  extends MobileApp{
     public void CheckSumValue(String val)
     {
         assertTextInElementBy(val, ANSWER_FIELD);
+    }
+
+    public void TapLinkShowAlert()
+    {
+        tapButton(LINK_SHOW_ALERT,1,tapDurationMillisecond);
+    }
+
+    public void TapOkShowAlert()
+    {
+        tapButton(ALERT_OK_BUTTON,1,tapDurationMillisecond);
     }
 }
