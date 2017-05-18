@@ -1,7 +1,7 @@
 package com.fanaticaltest.test_mobile_factory_demo.lib;
 
 import cucumber.api.Scenario;
-//import java.io.IOException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import org.slf4j.Logger;
@@ -32,7 +32,7 @@ public class Stats {
         Property prop = new Property();
         String urlBuilder = prop.read("ft_test_log_url");
         int ft_test_log_required = Integer.parseInt(prop.read("ft_test_log_required"));
-        //LogTest logTest = new LogTest();
+        LogTest logTest = new LogTest();
 
         try {
             logger.info("******Scenario statistics******");
@@ -64,13 +64,13 @@ public class Stats {
             logger.info("UnsupportedEncodingException : {} ", e.toString());
         }
         if (ft_test_log_required==1){
-            logger.info("ft-test-log url {}",urlBuilder);
-            /*try {
+            //logger.info("ft-test-log url {}",urlBuilder);
+            try {
                 logger.info("ft-test-log url {}",urlBuilder);
                 logTest.send(urlBuilder);
             } catch (IOException e) {
                 logger.info("IOException : {} ", e.toString());
-            }*/
+            }
         }
         else {
             logger.info("Test log is unable.");
