@@ -14,6 +14,12 @@ public class CalculateSum  extends MobileApp{
     private static final By SECOND_FIELD = By.name("IntegerB");
     private static final By COMPUTE_BUTTON = By.name("ComputeSumButton");
     private static final By ANSWER_FIELD = By.name("Answer");
+    private static final By LINK_SHOW_ALERT = By.name("show alert");
+    private static final By ALERT_OK_BUTTON = By.name("OK");
+    private static final By SLIDER_APPELEM = By.xpath("//XCUIElementTypeSlider[@name=\"AppElem\"]");
+    private static final By LINK_TEST_GESTURE = By.name("Test Gesture");
+    //name= Test Gesture
+    // 	Switzerland
 
     public void EnterFirstValue(String val)
     {
@@ -30,4 +36,25 @@ public class CalculateSum  extends MobileApp{
     {
         assertTextInElementBy(val, ANSWER_FIELD);
     }
+
+    public void TapLinkShowAlert()
+    {
+        tapButton(LINK_SHOW_ALERT,1,tapDurationMillisecond);
+    }
+
+    public void TapOkShowAlert()
+    {
+        tapButton(ALERT_OK_BUTTON,1,tapDurationMillisecond);
+    }
+
+    public void MoveSliderTo(String val)
+    {
+        swipeSlider(SLIDER_APPELEM,val);
+    }
+
+    public  void CheckSliderValueWithScreenShot(String val)
+    {
+        getIntermediateScreenshots("slider");
+    }
+
 }
