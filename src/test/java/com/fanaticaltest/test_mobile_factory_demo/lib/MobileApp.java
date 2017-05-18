@@ -128,4 +128,11 @@ public class MobileApp {
             e.printStackTrace();
         }
     }
+
+    public void swipeSlider(By by, String value)
+    {
+        MobileElement selectedSlider = (MobileElement) driver.findElement(by);
+        selectedSlider.sendKeys(value);
+
+    }
 }

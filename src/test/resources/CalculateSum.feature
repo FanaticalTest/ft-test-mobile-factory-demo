@@ -18,3 +18,8 @@ Feature: Calculate sum of 2 values
     When a user is tapping Show alert
     And a user is tapping on OK
     Then a user should see in the result sum "SumLabel"
+
+  @Id=B.1.3
+  Scenario: User use the slider and set a value
+    When a user move the slider to the value "0.2"
+    Then the value returned is "0.2"

@@ -56,4 +56,15 @@ public class CalculateSumSteps extends CalculateSum{
     public void a_user_should_see_in_the_result_sum(String sumResult) throws Throwable {
         CheckSumValue(sumResult);
     }
+
+    @When("^a user move the slider to the value \"([^\"]*)\"$")
+    public void a_user_move_the_slider_to_the_value(String percentage) throws Throwable {
+        MoveSliderTo(percentage);
+    }
+
+    @Then("^the value returned is \"([^\"]*)\"$")
+    public void the_value_returned_is(String percentage) throws Throwable {
+        CheckSliderValueWithScreenShot(percentage);
+    }
+
 }

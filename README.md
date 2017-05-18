@@ -19,6 +19,7 @@ mvn clean verify -Dtest=CukesRunner -Dcucumber.options="-t @Project=MobileApp" >
 mvn clean verify -Dtest=CukesRunner -Dcucumber.options="-t @Feature=CalculateSum" > log.txt
 mvn clean verify -Dtest=CukesRunner -Dcucumber.options="-t @Id=B.1.1" > log.txt
 mvn clean verify -Dtest=CukesRunner -Dcucumber.options="-t @Id=B.1.2" > log.txt
+mvn clean verify -Dtest=CukesRunner -Dcucumber.options="-t @Id=B.1.3" > log.txt
 ```
 
 ## Reference
