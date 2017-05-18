@@ -5,7 +5,7 @@ import cucumber.api.java.Before;
 import cucumber.api.java.After;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
-
+import cucumber.api.Scenario;
 import java.net.MalformedURLException;
 
 
@@ -22,9 +22,9 @@ public class CalculateSumSteps extends CalculateSum{
     }
 
     @After
-    public  void after_scenario()
+    public  void after_scenario(Scenario scenario)
     {
-        afterScenario();
+        afterScenario(scenario);
     }
 
     @When("^a user is typing the first value \"([^\"]*)\"$")
