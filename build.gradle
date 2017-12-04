@@ -2,7 +2,7 @@ buildscript {
 	ext {
 		cucumberVersion = '2.1.0'
 		junitVersion= '4.12'
-		factoryVersion = '0.1.0'
+		factoryVersion = 'b2.0.0'
 	}
 }
 
