@@ -38,11 +38,13 @@ public class CalculateSumSteps extends CalculateSum{
 
     @When("^a user is typing the second value \"([^\"]*)\"$")
     public void a_user_is_typing_the_second_value(String secondValue) throws Exception {
+        TapOkShowAlert();
         EnterSecondValue(secondValue);
     }
 
     @Then("^a user should see the sum equal to \"([^\"]*)\"$")
     public void a_user_should_see_the_sum_equal_to(String sumResult) throws Exception {
+        TapOkShowAlert();
         CheckSumValue(sumResult);
     }
 

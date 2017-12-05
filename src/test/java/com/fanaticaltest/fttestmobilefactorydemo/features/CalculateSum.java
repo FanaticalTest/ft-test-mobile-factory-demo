@@ -28,19 +28,6 @@ public class CalculateSum {
 
     public IOSDriver driver;
 
-    private void CheckIfAlertVisible(By byAlert, By byOk)
-    {
-        MobUI mobUI = new MobUI(this.driver);
-        if (mobUI.isVisibleElementBy(byAlert))
-        {
-            logger.info(mobUI.tapButtonBy(byOk,1,tapDurationMillisecond));
-        }
-        else
-        {
-            logger.info("Element " + byAlert + " is not visible");
-        }
-    }
-
     public void EnterFirstValue(String val)
     {
         MobUI mobUI = new MobUI(this.driver);
@@ -69,7 +56,8 @@ public class CalculateSum {
 
     public void TapOkShowAlert()
     {
-        CheckIfAlertVisible(ALERT_COOL_TITLE,ALERT_OK_BUTTON);
+        MobUI mobUI = new MobUI(this.driver);
+        logger.info(mobUI.handleAlertMessage(ALERT_COOL_TITLE,ALERT_OK_BUTTON));
     }
 
     public void MoveSliderTo(String val)
