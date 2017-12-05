@@ -2,6 +2,7 @@ buildscript {
 	ext {
 		cucumberVersion = '2.1.0'
 		junitVersion= '4.12'
+		ftappiumVersion = '0.1.0'
 		factoryVersion = 'b2.0.0'
 	}
 }
@@ -27,6 +28,7 @@ repositories {
 
 
 dependencies {
+	compile "com.fanaticaltest:ft-appium:${ftappiumVersion}"
 	testCompile "io.cucumber:cucumber-java:${cucumberVersion}"
 	testCompile "io.cucumber:cucumber-junit:${cucumberVersion}"
 	testCompile "junit:junit:${junitVersion}"
