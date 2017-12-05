@@ -85,3 +85,8 @@ buildNumber.properties
 
 # log file for test runs
 log.txt
+*.bin
+
+*.lock
+/build/
+.gradle
