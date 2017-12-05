@@ -1,0 +1,49 @@
+buildscript {
+	ext {
+		cucumberVersion = '2.1.0'
+		junitVersion= '4.12'
+		ftappiumVersion = '0.1.1'
+		factoryVersion = 'b2.0.0'
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+
+configurations {
+	cucumberRuntime {
+		extendsFrom testRuntime
+	}
+}
+
+group = 'com.fanaticaltest'
+version = "${factoryVersion}"
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+}
+
+
+dependencies {
+	compile "com.fanaticaltest:ft-appium:${ftappiumVersion}"
+	testCompile "io.cucumber:cucumber-java:${cucumberVersion}"
+	testCompile "io.cucumber:cucumber-junit:${cucumberVersion}"
+	testCompile "junit:junit:${junitVersion}"
+}
+
+task cucumber() {
+	dependsOn assemble, compileTestJava
+	doLast {
+		javaexec {
+			main = "cucumber.api.cli.Main"
+			classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+			args = ['--plugin', 'pretty',
+					'--plugin', 'html:build/cucumber-html-report',
+					'--plugin', 'json:build/cucumber.json',
+					'--glue', 'com.fanaticaltest.fttestmobilefactorydemo.cucumber', 'src/test/resources']
+		}
+	}
+}
