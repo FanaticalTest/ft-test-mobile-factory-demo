@@ -4,6 +4,7 @@ package com.fanaticaltest.fttestmobilefactorydemo.features;
 import com.fanaticaltest.ftappium.MobUI;
 import com.fanaticaltest.ftconfig.Property;
 import io.appium.java_client.ios.IOSDriver;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +22,24 @@ public class CalculateSum {
     private static final By ANSWER_FIELD = By.name("Answer");
     private static final By LINK_SHOW_ALERT = By.name("show alert");
     private static final By ALERT_OK_BUTTON = By.name("OK");
+    private static final By ALERT_COOL_TITLE = By.name("Cool title");
     private static final By SLIDER_APPELEM = By.xpath("//XCUIElementTypeSlider[@name=\"AppElem\"]");
 
 
     public IOSDriver driver;
+
+    private void CheckIfAlertVisible(By byAlert, By byOk)
+    {
+        MobUI mobUI = new MobUI(this.driver);
+        if (mobUI.isVisibleElementBy(byAlert))
+        {
+            logger.info(mobUI.tapButtonBy(byOk,1,tapDurationMillisecond));
+        }
+        else
+        {
+            logger.info("Element " + byAlert + " is not visible");
+        }
+    }
 
     public void EnterFirstValue(String val)
     {
@@ -49,12 +64,12 @@ public class CalculateSum {
     {
         MobUI mobUI = new MobUI(this.driver);
         logger.info(mobUI.tapButtonBy(LINK_SHOW_ALERT,1,tapDurationMillisecond));
+        logger.info("Find element Cool title : " + String.valueOf(mobUI.isVisibleElementBy(By.name("Cool title"))));
     }
 
     public void TapOkShowAlert()
     {
-        MobUI mobUI = new MobUI(this.driver);
-        logger.info(mobUI.tapButtonBy(ALERT_OK_BUTTON,1,tapDurationMillisecond));
+        CheckIfAlertVisible(ALERT_COOL_TITLE,ALERT_OK_BUTTON);
     }
 
     public void MoveSliderTo(String val)

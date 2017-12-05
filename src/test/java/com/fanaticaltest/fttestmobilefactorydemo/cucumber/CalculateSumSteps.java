@@ -32,6 +32,7 @@ public class CalculateSumSteps extends CalculateSum{
 
     @When("^a user is typing the first value \"([^\"]*)\"$")
     public void a_user_is_typing_the_first_value(String firstVal) throws Exception {
+        TapOkShowAlert();
         EnterFirstValue(firstVal);
     }
 
