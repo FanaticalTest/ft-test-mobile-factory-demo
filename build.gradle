@@ -3,7 +3,7 @@ buildscript {
 		cucumberVersion = '2.1.0'
 		junitVersion= '4.12'
 		ftappiumVersion = '0.1.1'
-		factoryVersion = 'b2.0.0'
+		factoryVersion = 'b2.0.1'
 	}
 }
 
@@ -43,6 +43,7 @@ task cucumber() {
 			args = ['--plugin', 'pretty',
 					'--plugin', 'html:build/cucumber-html-report',
 					'--plugin', 'json:build/cucumber.json',
+					//'--tags', '@Id=002',
 					'--glue', 'com.fanaticaltest.fttestmobilefactorydemo.cucumber', 'src/test/resources']
 		}
 	}
