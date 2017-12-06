@@ -43,6 +43,7 @@ task cucumber() {
 			args = ['--plugin', 'pretty',
 					'--plugin', 'html:build/cucumber-html-report',
 					'--plugin', 'json:build/cucumber.json',
+					//'--tags', '@Id=002',
 					'--glue', 'com.fanaticaltest.fttestmobilefactorydemo.cucumber', 'src/test/resources']
 		}
 	}
