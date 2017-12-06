@@ -22,6 +22,7 @@ task cucumber() {
 			args = ['--plugin', 'pretty',
 					'--plugin', 'html:build/cucumber-html-report',
 					'--plugin', 'json:build/cucumber.json',
+					//'--tags', '@Id=002',
 					'--glue', 'com.fanaticaltest.fttestmobilefactorydemo.cucumber', 'src/test/resources']
 		}
 	}
@@ -32,4 +33,6 @@ task cucumber() {
 ```
 gradle cucumber
 ```
+
+To run specific tag just uncomment the tags line in the cucumber task in `build.gradle` : `'--tags', '@Id=002'`.
 
