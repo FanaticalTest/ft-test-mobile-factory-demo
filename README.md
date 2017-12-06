@@ -2,7 +2,7 @@
 
 ## Pre-requirement
 * Java 8.121
-* Xcode 8.3.2 and iOS Simulator 10.3
+* Xcode 8.3.3 and iOS Simulator 10.3 (http://www.fanaticaltest.com/appium-desktop-tutorial-and-setup/)
 * Appium-Desktop : 1.2.7 (http://www.fanaticaltest.com/appium-desktop-tutorial-and-setup/)
 * Appium-Server : 1.7.1 (embeded in Appium-Desktop 1.2.7)
 * com.fanaticaltest:ft-appium:0.1.1
