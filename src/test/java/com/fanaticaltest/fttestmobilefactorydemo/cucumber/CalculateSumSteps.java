@@ -1,6 +1,5 @@
 package com.fanaticaltest.fttestmobilefactorydemo.cucumber;
 
-//import com.fanaticaltest.fttestmobilefactorydemo.devices.IosSimulator;
 import com.fanaticaltest.ftappium.devices.IosSimulator;
 import com.fanaticaltest.ftconfig.Property;
 import com.fanaticaltest.fttestmobilefactorydemo.features.CalculateSum;
@@ -16,11 +15,10 @@ public class CalculateSumSteps extends CalculateSum{
 
     private Property p = new Property("./src/main/resources/application.properties");
 
-    @Before
+    @Before("@Device=IosSimulator")
     public void before_scenario()
     {
-        IosSimulator iosSimulator = new IosSimulator(p.read("iosSim.platformVersion"),p.read("iosSim.deviceName"),p.read("iosSim.appZipUrl"),p.read("iosSim.appiumVersion"),p.read("iosSim.appiumServerUrl"));
-        //iosSimulator.setAutomationName("XCUITest");
+        IosSimulator iosSimulator = new IosSimulator(p.read("iosSim.platformVersion"),p.read("iosSim.deviceName"),p.read("iosSim.appZipUrl"),p.read("appiumServer.appiumVersion"),p.read("appiumServer.appiumServerUrl"));
 
         try {
             this.driver = iosSimulator.connect();
@@ -29,11 +27,10 @@ public class CalculateSumSteps extends CalculateSum{
         }
     }
 
-    @After
+    @After("@Device=IosSimulator")
     public void after_scenario()
     {
-        IosSimulator iosSimulator = new IosSimulator(p.read("iosSim.platformVersion"),p.read("iosSim.deviceName"),p.read("iosSim.appZipUrl"),p.read("iosSim.appiumVersion"),p.read("iosSim.appiumServerUrl"));
-        //iosSimulator.setAutomationName("XCUITest");
+        IosSimulator iosSimulator = new IosSimulator(p.read("iosSim.platformVersion"),p.read("iosSim.deviceName"),p.read("iosSim.appZipUrl"),p.read("appiumServer.appiumVersion"),p.read("appiumServer.appiumServerUrl"));
         iosSimulator.disconnect(this.driver);
     }
 

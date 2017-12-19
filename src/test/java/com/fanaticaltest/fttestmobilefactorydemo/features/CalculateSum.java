@@ -3,15 +3,10 @@ package com.fanaticaltest.fttestmobilefactorydemo.features;
 
 import com.fanaticaltest.ftappium.MobUI;
 import com.fanaticaltest.ftconfig.Property;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CalculateSum {
 
@@ -19,7 +14,6 @@ public class CalculateSum {
     private String screenshotPath = p.read("global.screenshotPath");
     private final Logger logger = LoggerFactory.getLogger("APPIUM-ROBOT");
 
-    private int tapDurationMillisecond = 1000;
     private static final By FIRST_FIELD = By.name("IntegerA");
     private static final By SECOND_FIELD = By.name("IntegerB");
     private static final By COMPUTE_BUTTON = By.name("ComputeSumButton");
@@ -42,7 +36,7 @@ public class CalculateSum {
     {
         MobUI mobUI = new MobUI(this.driver);
         logger.info(mobUI.fillFieldBy(val,SECOND_FIELD));
-        logger.info(mobUI.tapButtonBy(COMPUTE_BUTTON,1,tapDurationMillisecond));
+        logger.info(mobUI.tapButtonBy(COMPUTE_BUTTON));
     }
 
     public void CheckSumValue(String val)
@@ -54,7 +48,7 @@ public class CalculateSum {
     public void TapLinkShowAlert()
     {
         MobUI mobUI = new MobUI(this.driver);
-        logger.info(mobUI.tapButtonBy(LINK_SHOW_ALERT,1,tapDurationMillisecond));
+        logger.info(mobUI.tapButtonBy(LINK_SHOW_ALERT));
         logger.info("Find element Cool title : " + String.valueOf(mobUI.isVisibleElementBy(By.name("Cool title"))));
     }
 
