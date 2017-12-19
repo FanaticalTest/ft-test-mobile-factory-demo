@@ -3,11 +3,15 @@ package com.fanaticaltest.fttestmobilefactorydemo.features;
 
 import com.fanaticaltest.ftappium.MobUI;
 import com.fanaticaltest.ftconfig.Property;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CalculateSum {
 
@@ -21,8 +25,8 @@ public class CalculateSum {
     private static final By COMPUTE_BUTTON = By.name("ComputeSumButton");
     private static final By ANSWER_FIELD = By.name("Answer");
     private static final By LINK_SHOW_ALERT = By.name("show alert");
-    private static final By ALERT_OK_BUTTON = By.name("OK");
-    private static final By ALERT_COOL_TITLE = By.name("Cool title");
+    private static final String ALERT_OK_BUTTON = "OK";
+    private static final String ALERT_COOL_TITLE = "this alert is so cool.";
     private static final By SLIDER_APPELEM = By.xpath("//XCUIElementTypeSlider[@name=\"AppElem\"]");
 
 
@@ -57,7 +61,7 @@ public class CalculateSum {
     public void TapOkShowAlert()
     {
         MobUI mobUI = new MobUI(this.driver);
-        logger.info(mobUI.handleAlertMessage(ALERT_COOL_TITLE,ALERT_OK_BUTTON));
+        logger.info(mobUI.handleAlertMessageByAccessibilityId(ALERT_COOL_TITLE,ALERT_OK_BUTTON));
     }
 
     public void MoveSliderTo(String val)
@@ -74,5 +78,11 @@ public class CalculateSum {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void CheckAssertTextInLink(String val)
+    {
+        MobUI mobUI = new MobUI(this.driver);
+        mobUI.assertTextInElementBy("show alert",LINK_SHOW_ALERT );
     }
 }

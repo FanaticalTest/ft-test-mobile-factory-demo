@@ -36,3 +36,13 @@ gradle cucumber
 
 To run specific tag just uncomment the tags line in the cucumber task in `build.gradle` : `'--tags', '@Id=002'`.
 
+### Running a subset of scenarios
+```
+cucumber --tags @billing            # Runs both scenarios
+cucumber --tags @important          # Runs the first scenario
+cucumber --tags ~@important         # Runs the second scenario (Scenarios without @important)
+
+cucumber --tags @billing --tags @important    # Runs the first scenario (Scenarios with @important AND @billing)
+cucumber --tags @billing,@important           # Runs both scenarios (Scenarios with @important OR @billing)
+```
+

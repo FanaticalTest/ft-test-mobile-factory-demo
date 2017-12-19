@@ -1,6 +1,8 @@
 package com.fanaticaltest.fttestmobilefactorydemo.cucumber;
 
-import com.fanaticaltest.fttestmobilefactorydemo.devices.IosSimulator;
+//import com.fanaticaltest.fttestmobilefactorydemo.devices.IosSimulator;
+import com.fanaticaltest.ftappium.devices.IosSimulator;
+import com.fanaticaltest.ftconfig.Property;
 import com.fanaticaltest.fttestmobilefactorydemo.features.CalculateSum;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -12,12 +14,16 @@ import java.net.MalformedURLException;
 
 public class CalculateSumSteps extends CalculateSum{
 
+    private Property p = new Property("./src/main/resources/application.properties");
+
     @Before
     public void before_scenario()
     {
-        IosSimulator iosSimulator = new IosSimulator();
+        IosSimulator iosSimulator = new IosSimulator(p.read("iosSim.platformVersion"),p.read("iosSim.deviceName"),p.read("iosSim.appZipUrl"),p.read("iosSim.appiumVersion"),p.read("iosSim.appiumServerUrl"));
+        //iosSimulator.setAutomationName("XCUITest");
+
         try {
-            this.driver = iosSimulator.beforeScenario();
+            this.driver = iosSimulator.connect();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -26,8 +32,9 @@ public class CalculateSumSteps extends CalculateSum{
     @After
     public void after_scenario()
     {
-        IosSimulator iosSimulator = new IosSimulator();
-        iosSimulator.afterScenario(this.driver);
+        IosSimulator iosSimulator = new IosSimulator(p.read("iosSim.platformVersion"),p.read("iosSim.deviceName"),p.read("iosSim.appZipUrl"),p.read("iosSim.appiumVersion"),p.read("iosSim.appiumServerUrl"));
+        //iosSimulator.setAutomationName("XCUITest");
+        iosSimulator.disconnect(this.driver);
     }
 
     @When("^a user is typing the first value \"([^\"]*)\"$")
@@ -58,9 +65,9 @@ public class CalculateSumSteps extends CalculateSum{
         TapOkShowAlert();
     }
 
-    @Then("^a user should see in the result sum \"([^\"]*)\"$")
-    public void a_user_should_see_in_the_result_sum(String sumResult) throws Exception {
-        CheckSumValue(sumResult);
+    @Then("^a user should see the link \"([^\"]*)\"$")
+    public void a_user_should_see_the_link(String textVal) throws Exception {
+        CheckAssertTextInLink(textVal);
     }
 
     @When("^a user move the slider to the value \"([^\"]*)\"$")
