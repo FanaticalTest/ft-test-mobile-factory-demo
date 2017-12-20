@@ -64,14 +64,10 @@ public class CalculateSum {
         logger.info(mobUI.swipeSliderBy(SLIDER_APPELEM,val));
     }
 
-    public  void CheckSliderValueWithScreenShot(String val)
-    {
-        try {
-            MobUI mobUI = new MobUI(this.driver);
-            logger.info(mobUI.getScreenshot(screenshotPath, "slider"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public  void CheckSliderValueWithScreenShot(String val) throws Exception {
+
+        MobUI mobUI = new MobUI(this.driver);
+        logger.info(mobUI.getScreenshot(screenshotPath, "slider"));
     }
 
     public void CheckAssertTextInLink(String val)

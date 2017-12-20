@@ -2,8 +2,8 @@ buildscript {
 	ext {
 		cucumberVersion = '2.1.0'
 		junitVersion= '4.12'
-		ftappiumVersion = '0.1.4.2'
-		factoryVersion = 'b2.0.3'
+		ftappiumVersion = '0.1.5'
+		factoryVersion = 'b2.0.4'
 	}
 }
 
