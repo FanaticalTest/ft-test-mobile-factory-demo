@@ -9,8 +9,8 @@ Feature: Application configuration on Real Android device
     Then a user should see the textbox with "John Smith" - AndroidConfigApp
     And a user is changing the Display name to "Toto" - AndroidConfigApp
     And a user is taping on "OK" menu - AndroidConfigApp
-    And a user should see the link "Display name" - AndroidConfigApp
-    And a user is taping on "Display name" menu - AndroidConfigApp
+    When a user should see the link "Display name" - AndroidConfigApp
+    Then a user is taping on "Display name" menu - AndroidConfigApp
     And a user should see the textbox with "Toto" - AndroidConfigApp
-    And a user is changing the Display name to "John Smith" - AndroidConfigApp
-    And a user is taping on "OK" menu - AndroidConfigApp
+    When a user is changing the Display name to "John Smith" - AndroidConfigApp
+    Then a user is taping on "OK" menu - AndroidConfigApp
