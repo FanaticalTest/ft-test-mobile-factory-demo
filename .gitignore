@@ -27,3 +27,4 @@ nbdist/
 
 *.png
 *.txt
+src/main/resources/licences.properties
