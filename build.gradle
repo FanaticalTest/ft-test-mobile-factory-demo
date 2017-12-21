@@ -2,8 +2,8 @@ buildscript {
 	ext {
 		cucumberVersion = '2.1.0'
 		junitVersion= '4.12'
-		ftappiumVersion = '0.1.5'
-		factoryVersion = '2.0.0'
+		ftappiumVersion = '0.1.7'
+		factoryVersion = '2.1.0'
 	}
 }
 
@@ -43,7 +43,7 @@ task cucumber() {
 			args = ['--plugin', 'pretty',
 					'--plugin', 'html:build/cucumber-html-report',
 					'--plugin', 'json:build/cucumber.json',
-					'--tags', '@Device=IosSimulator',
+					'--tags', '@Device=IosRealDevice',
 					'--glue', 'com.fanaticaltest.fttestmobilefactorydemo.cucumber', 'src/test/resources']
 		}
 	}
