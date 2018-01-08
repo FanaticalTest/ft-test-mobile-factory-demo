@@ -1,4 +1,4 @@
-# ft-cucumber-skeleton
+# ft-test-mobile-factory-demo
 
 ## Pre-requirement
 * Java 8.121
@@ -7,9 +7,13 @@
 * Appium-Server : 1.7.1 (embeded in Appium-Desktop 1.2.7)
 * com.fanaticaltest:ft-appium:0.1.5
 * io.cucumber:cucumber-java:2.1.0 and io.cucumber:cucumber-junit:2.1.0
+* Support Real device : iOS and Android
 
 
 ## Getting started
+* Ensure to have Appium server running like using Appium Desktop.
+* Ensure the `build.gradle` is properly set and the `application.properties` correctly set.
+* If you are running iOS real device ensure to have porperly set `licences.properties`
 * Update the build.gradle by changing the glue 
 `com.fanaticaltest.fttestmobilefactorydemo.cucumber` => with your package name where the cucumber are implemented.
 ```
