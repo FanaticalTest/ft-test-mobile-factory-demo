@@ -50,3 +50,7 @@ cucumber --tags @billing --tags @important    # Runs the first scenario (Scenari
 cucumber --tags @billing,@important           # Runs both scenarios (Scenarios with @important OR @billing)
 ```
 
+## Jenkins in Docker running Mac host
+If you are running a Jenkins in a docker hosted in a mac, you need to be careful with some elements:
+* When the jenkins container tries to connect to the docker host with the Appium-Desktop you should use `http://docker.for.mac.localhost:4723/wd/hub` as `appiumServer.appiumServerUrl` property
+* In your Appium server you need to set `executeAsync Callback Host` with the value `docker.for.mac.localhost` otherwise it will use localhost and it won't work.
