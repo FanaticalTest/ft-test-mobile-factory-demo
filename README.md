@@ -36,6 +36,7 @@ task cucumber() {
 ## Running
 ```
 gradle cucumber
+gradle cucumber -Ddevice=IosSimulator
 ```
 
 To run specific tag just uncomment the tags line in the cucumber task in `build.gradle` : `'--tags', '@Id=002'`.

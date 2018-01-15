@@ -4,6 +4,7 @@ buildscript {
 		junitVersion= '4.12'
 		ftappiumVersion = '0.1.7'
 		factoryVersion = '2.1.2'
+		device = "IosSimulator"
 	}
 }
 
@@ -43,7 +44,7 @@ task cucumber() {
 			args = ['--plugin', 'pretty',
 					'--plugin', 'html:build/cucumber-html-report',
 					'--plugin', 'json:build/cucumber.json',
-					'--tags', '@Device=IosSimulator',
+					'--tags', "@Device=${device}",
 					'--glue', 'com.fanaticaltest.fttestmobilefactorydemo.cucumber', 'src/test/resources']
 		}
 	}
