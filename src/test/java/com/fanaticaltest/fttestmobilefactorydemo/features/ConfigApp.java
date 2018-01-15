@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 public class ConfigApp {
 
-    private Property p = new Property("./src/main/resources/application.properties");
+    public Property p = new Property("./src/main/resources/application.properties");
     private Property androidUI = new Property("./src/main/resources/androidConfigApp.properties");
     private String screenshotPath = p.read("global.screenshotPath");
     private final Logger logger = LoggerFactory.getLogger("APPIUM-ROBOT");
