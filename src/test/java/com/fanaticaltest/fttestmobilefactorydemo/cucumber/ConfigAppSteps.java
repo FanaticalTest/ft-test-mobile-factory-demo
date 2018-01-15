@@ -13,12 +13,14 @@ import java.net.MalformedURLException;
 
 public class ConfigAppSteps extends ConfigApp {
 
-    private Property p = new Property("./src/main/resources/application.properties");
+    private String appiumServerUrl = System.getenv("APPIUM_SERVER_URL");
 
     @Before("@Device=AndroidRealDevice")
     public void before_scenario()
     {
-        AndroidRealDevice androidRealDevice = new AndroidRealDevice(p.read("androidRealDevice.platformVersion"),p.read("androidRealDevice.deviceName"),p.read("androidRealDevice.appZipUrl"),p.read("appiumServer.appiumVersion"),p.read("appiumServer.appiumServerUrl"));
+        AndroidRealDevice androidRealDevice = new AndroidRealDevice(p.read("androidRealDevice.platformVersion"),
+                p.read("androidRealDevice.deviceName"),p.read("androidRealDevice.appZipUrl"),
+                p.read("appiumServer.appiumVersion"),appiumServerUrl);
 
         try {
             this.driver = androidRealDevice.connect();
@@ -30,7 +32,9 @@ public class ConfigAppSteps extends ConfigApp {
     @After("@Device=AndroidRealDevice")
     public void after_scenario()
     {
-        AndroidRealDevice androidRealDevice = new AndroidRealDevice(p.read("androidRealDevice.platformVersion"),p.read("androidRealDevice.deviceName"),p.read("androidRealDevice.appZipUrl"),p.read("appiumServer.appiumVersion"),p.read("appiumServer.appiumServerUrl"));
+        AndroidRealDevice androidRealDevice = new AndroidRealDevice(p.read("androidRealDevice.platformVersion"),p.read("androidRealDevice.deviceName"),
+                p.read("androidRealDevice.appZipUrl"),p.read("appiumServer.appiumVersion"),
+                appiumServerUrl);
         androidRealDevice.disconnect(this.driver);
     }
 

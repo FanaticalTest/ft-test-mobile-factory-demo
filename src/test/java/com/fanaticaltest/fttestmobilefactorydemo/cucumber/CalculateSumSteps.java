@@ -13,12 +13,14 @@ import java.net.MalformedURLException;
 
 public class CalculateSumSteps extends CalculateSum{
 
-    private Property p = new Property("./src/main/resources/application.properties");
+    private String appiumServerUrl = System.getenv("APPIUM_SERVER_URL");
 
     @Before("@Device=IosSimulator")
     public void before_scenario()
     {
-        IosSimulator iosSimulator = new IosSimulator(p.read("iosSim.platformVersion"),p.read("iosSim.deviceName"),p.read("iosSim.appZipUrl"),p.read("appiumServer.appiumVersion"),p.read("appiumServer.appiumServerUrl"));
+        IosSimulator iosSimulator = new IosSimulator(p.read("iosSim.platformVersion"),p.read("iosSim.deviceName"),
+                p.read("iosSim.appZipUrl"),p.read("appiumServer.appiumVersion"),
+                appiumServerUrl);
 
         try {
             this.driver = iosSimulator.connect();
@@ -30,7 +32,9 @@ public class CalculateSumSteps extends CalculateSum{
     @After("@Device=IosSimulator")
     public void after_scenario()
     {
-        IosSimulator iosSimulator = new IosSimulator(p.read("iosSim.platformVersion"),p.read("iosSim.deviceName"),p.read("iosSim.appZipUrl"),p.read("appiumServer.appiumVersion"),p.read("appiumServer.appiumServerUrl"));
+        IosSimulator iosSimulator = new IosSimulator(p.read("iosSim.platformVersion"),p.read("iosSim.deviceName"),
+                p.read("iosSim.appZipUrl"),p.read("appiumServer.appiumVersion"),
+                appiumServerUrl);
         iosSimulator.disconnect(this.driver);
     }
 

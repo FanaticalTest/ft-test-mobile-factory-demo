@@ -16,6 +16,7 @@
 * If you are running iOS real device ensure to have porperly set `licences.properties`
 * Update the build.gradle by changing the glue 
 `com.fanaticaltest.fttestmobilefactorydemo.cucumber` => with your package name where the cucumber are implemented.
+For convenience we move the device tag as a project property
 ```
 task cucumber() {
 	dependsOn assemble, compileTestJava
@@ -26,16 +27,19 @@ task cucumber() {
 			args = ['--plugin', 'pretty',
 					'--plugin', 'html:build/cucumber-html-report',
 					'--plugin', 'json:build/cucumber.json',
-					'--tags', '@Device=IosSimulator',
+					'--tags', "@Device=${device}",
 					'--glue', 'com.fanaticaltest.fttestmobilefactorydemo.cucumber', 'src/test/resources']
 		}
 	}
 }
 ```
 
+
 ## Running
 ```
-gradle cucumber
+gradle cucumber -Pdevice=IosSimulator -PAPPIUM_SERVER_URL=http://127.0.0.1:4723/wd/hub
+gradle cucumber -Pdevice=AndroidRealDevice -PAPPIUM_SERVER_URL=http://127.0.0.1:4723/wd/hub
+gradle cucumber -Pdevice=IosRealDevice -PAPPIUM_SERVER_URL=http://127.0.0.1:4723/wd/hub
 ```
 
 To run specific tag just uncomment the tags line in the cucumber task in `build.gradle` : `'--tags', '@Id=002'`.
@@ -50,3 +54,7 @@ cucumber --tags @billing --tags @important    # Runs the first scenario (Scenari
 cucumber --tags @billing,@important           # Runs both scenarios (Scenarios with @important OR @billing)
 ```
 
+## Jenkins in Docker running Mac host
+If you are running a Jenkins in a docker hosted in a mac, you need to be careful with some elements:
+* When the jenkins container tries to connect to the docker host with the Appium-Desktop you should use `http://docker.for.mac.localhost:4723/wd/hub` as `appiumServer.appiumServerUrl` property
+* In your Appium server you need to set `executeAsync Callback Host` with the value `docker.for.mac.localhost` otherwise it will use localhost and it won't work.
