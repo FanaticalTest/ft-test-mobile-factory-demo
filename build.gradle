@@ -4,7 +4,6 @@ buildscript {
 		junitVersion= '4.12'
 		ftappiumVersion = '0.1.7'
 		factoryVersion = '2.1.2'
-		device = "IosSimulator"
 	}
 }
 
@@ -27,12 +26,15 @@ repositories {
 	mavenLocal()
 }
 
-
 dependencies {
 	compile "com.fanaticaltest:ft-appium:${ftappiumVersion}"
 	testCompile "io.cucumber:cucumber-java:${cucumberVersion}"
 	testCompile "io.cucumber:cucumber-junit:${cucumberVersion}"
 	testCompile "junit:junit:${junitVersion}"
+}
+
+test {
+	systemProperty "APPIUM_SERVER_URL", findProperty("APPIUM_SERVER_URL")
 }
 
 task cucumber() {

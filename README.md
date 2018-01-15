@@ -16,6 +16,7 @@
 * If you are running iOS real device ensure to have porperly set `licences.properties`
 * Update the build.gradle by changing the glue 
 `com.fanaticaltest.fttestmobilefactorydemo.cucumber` => with your package name where the cucumber are implemented.
+For convenience we move the device tag as a project property
 ```
 task cucumber() {
 	dependsOn assemble, compileTestJava
@@ -26,17 +27,19 @@ task cucumber() {
 			args = ['--plugin', 'pretty',
 					'--plugin', 'html:build/cucumber-html-report',
 					'--plugin', 'json:build/cucumber.json',
-					'--tags', '@Device=IosSimulator',
+					'--tags', "@Device=${device}",
 					'--glue', 'com.fanaticaltest.fttestmobilefactorydemo.cucumber', 'src/test/resources']
 		}
 	}
 }
 ```
 
+
 ## Running
 ```
-gradle cucumber
-gradle cucumber -Ddevice=IosSimulator
+gradle cucumber -Pdevice=IosSimulator -PAPPIUM_SERVER_URL=http://127.0.0.1:4723/wd/hub
+gradle cucumber -Pdevice=AndroidRealDevice -PAPPIUM_SERVER_URL=http://127.0.0.1:4723/wd/hub
+gradle cucumber -Pdevice=IosRealDevice -PAPPIUM_SERVER_URL=http://127.0.0.1:4723/wd/hub
 ```
 
 To run specific tag just uncomment the tags line in the cucumber task in `build.gradle` : `'--tags', '@Id=002'`.

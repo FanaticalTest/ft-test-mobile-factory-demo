@@ -11,12 +11,14 @@ import java.net.MalformedURLException;
 
 public class FanaticalFoodSteps extends FanaticalFood{
 
+    private String appiumServerUrl = System.getenv("APPIUM_SERVER_URL");
+
     @Before("@Device=IosRealDevice")
     public void before_scenario()
     {
         IosRealDevice iosRealDevice = new IosRealDevice(p.read("ios.platformVersion"),lic.read("lic.deviceName"),
                 p.read("ios.appZipUrl"),lic.read("lic.xcodeOrgId"),lic.read("lic.xcodeSigningId"),
-                lic.read("lic.udid"), p.read("appiumServer.appiumVersion"),p.read("appiumServer.appiumServerUrl"));
+                lic.read("lic.udid"), p.read("appiumServer.appiumVersion"),appiumServerUrl);
         try {
             this.driver = iosRealDevice.connect();
         } catch (MalformedURLException e) {
@@ -29,7 +31,7 @@ public class FanaticalFoodSteps extends FanaticalFood{
     {
         IosRealDevice iosRealDevice = new IosRealDevice(p.read("ios.platformVersion"),lic.read("lic.deviceName"),
                 p.read("ios.appZipUrl"),lic.read("lic.xcodeOrgId"),lic.read("lic.xcodeSigningId"),
-                lic.read("lic.udid"), p.read("appiumServer.appiumVersion"),p.read("appiumServer.appiumServerUrl"));
+                lic.read("lic.udid"), p.read("appiumServer.appiumVersion"),appiumServerUrl);
         iosRealDevice.disconnect(this.driver);
     }
 
