@@ -37,6 +37,7 @@ task cucumber() {
 
 ## Running
 ```
+export APPIUM_SERVER_URL=http://127.0.0.1:4723/wd/hub
 gradle cucumber -Pdevice=IosSimulator -PAPPIUM_SERVER_URL=http://127.0.0.1:4723/wd/hub
 gradle cucumber -Pdevice=AndroidRealDevice -PAPPIUM_SERVER_URL=http://127.0.0.1:4723/wd/hub
 gradle cucumber -Pdevice=IosRealDevice -PAPPIUM_SERVER_URL=http://127.0.0.1:4723/wd/hub
