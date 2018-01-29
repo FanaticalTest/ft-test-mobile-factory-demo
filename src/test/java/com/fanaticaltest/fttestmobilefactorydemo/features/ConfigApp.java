@@ -54,6 +54,7 @@ public class ConfigApp {
         else if(val.equals("OK"))
         {
             logger.info(mobUI.tapButtonBy(DISPLAY_NAME_OK));
+            logger.info(mobUI.freezeProcess(1L));
         }
     }
 

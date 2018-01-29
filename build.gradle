@@ -3,7 +3,7 @@ buildscript {
 		cucumberVersion = '2.1.0'
 		junitVersion= '4.12'
 		ftappiumVersion = '0.1.7'
-		factoryVersion = '2.1.2'
+		factoryVersion = '2.1.3'
 	}
 }
 
