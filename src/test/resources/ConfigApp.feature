@@ -21,3 +21,12 @@ Feature: Application configuration on Real Android device
     When a user is taping on "General" menu - AndroidConfigApp
     Then a user should see the link "Display name" - AndroidConfigApp
     When a user is taping on "Switch enabling social recommendations" menu - AndroidConfigApp
+
+  @Id=103 @Device=AndroidRealDevice
+  Scenario: Add friends to message - Happy Path
+    Given a user should see the link "General" - AndroidConfigApp
+    And the initial value for adding friends to message is set at "Never" - AndroidConfigApp
+    When a user change the value for adding friends to message is set at "Always" - AndroidConfigApp
+    Then a user should see the value change to "Always" on the General screen - AndroidConfigApp
+
+
