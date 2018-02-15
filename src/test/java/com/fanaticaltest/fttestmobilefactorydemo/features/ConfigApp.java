@@ -63,7 +63,6 @@ public class ConfigApp {
         else if (val.equals("Switch enabling social recommendations"))
         {
             logger.info(tapOnOffSwitch(ENABLE_SOCIAL_REC));
-            logger.info(mobUI.getScreenshot(screenshotPath, "switch"));
             logger.info(mobUI.freezeProcess(1L));
         }
     }
@@ -80,6 +79,30 @@ public class ConfigApp {
         logger.info(mobUI.fillFieldBy(val,DISPLAY_NAME_TEXTBOX));
     }
 
+    public void UserSeeSwitchValue(String val)
+    {
+        MobUI mobUI = new MobUI(driver);
+        logger.info(mobUI.assertTextInElementBy(val,ENABLE_SOCIAL_REC));
+    }
+
+    public void CheckDefaultValueEnableSocialRec(String val)
+    {
+        MobUI mobUI = new MobUI(driver);
+
+        if (!checkTextInElementBy(val, ENABLE_SOCIAL_REC))
+        {
+            logger.info(tapOnOffSwitch(ENABLE_SOCIAL_REC));
+            logger.info(mobUI.freezeProcess(1L));
+        }
+    }
+
+    public void CheckDefaultValueDisplayName(String val)throws Exception
+    {
+        UserTapLink("Display name");
+        UserChangeDisplayNameValue(val);
+        UserTapLink("OK");
+    }
+
     //To be moved in ft-appium in v0.1.8
     @Deprecated
     private String tapOnOffSwitch(By by)
@@ -90,6 +113,16 @@ public class ConfigApp {
         String finalValue = mobileElement.getText();
         Assert.assertNotEquals(initialValue,finalValue);
         return ("Tap On/Off switch " + by + " - initial value was : " + initialValue + " - final value is : " + finalValue);
+    }
+
+    //To be moved in ft-appium in v0.1.8
+    @Deprecated
+    private boolean checkTextInElementBy(String expectedVal, By by)
+    {
+        MobileElement mobileElement = (MobileElement) driver.findElement(by);
+        String currentVal = mobileElement.getText();
+        logger.info("Assert Text in element : " + by + " - current text is : " + currentVal + " - and the value should be : " + expectedVal);
+        return expectedVal.equals(currentVal);
     }
 
 }
