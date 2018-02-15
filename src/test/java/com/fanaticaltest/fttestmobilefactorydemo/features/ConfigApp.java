@@ -24,6 +24,9 @@ public class ConfigApp {
     private final By DISPLAY_NAME_CANCEL = By.id(androidUI.read("androidConfigApp.DisplayName.Cancel"));
     private final By DISPLAY_NAME_OK = By.id(androidUI.read("androidConfigApp.DisplayName.Ok"));
     private final By ENABLE_SOCIAL_REC = By.id(androidUI.read("androidConfigApp.EnableSocialRec.Switch"));
+    private final By ADD_FRIENDS_TEXTBOX = By.id(androidUI.read("androidConfigApp.AddFriends.TextBox"));
+    private final By ADD_FRIENDS_NEVER = By.id(androidUI.read("androidConfigApp.AddFriends.Never"));
+    private final By ADD_FRIENDS_ALWAYS = By.id(androidUI.read("androidConfigApp.AddFriends.Always"));
 
     public AndroidDriver driver;
 
@@ -65,6 +68,21 @@ public class ConfigApp {
             logger.info(tapOnOffSwitch(ENABLE_SOCIAL_REC));
             logger.info(mobUI.freezeProcess(1L));
         }
+        else if (val.equals("Add friends to messages"))
+        {
+            logger.info(mobUI.tapButtonBy(ADD_FRIENDS_TEXTBOX));
+            logger.info(mobUI.freezeProcess(1L));
+        }
+        else if (val.equals("Add friends Never"))
+        {
+            logger.info(mobUI.tapButtonBy(ADD_FRIENDS_NEVER));
+            logger.info(mobUI.freezeProcess(1L));
+        }
+        else if (val.equals("Add friends Always"))
+        {
+            logger.info(mobUI.tapButtonBy(ADD_FRIENDS_ALWAYS));
+            logger.info(mobUI.freezeProcess(1L));
+        }
     }
 
     public void UserSeeTextBox(String val)
@@ -101,6 +119,17 @@ public class ConfigApp {
         UserTapLink("Display name");
         UserChangeDisplayNameValue(val);
         UserTapLink("OK");
+    }
+
+    public void CheckDefaultValueAddFriends(String val) throws Exception
+    {
+        MobUI mobUI = new MobUI(driver);
+
+        if (!checkTextInElementBy(val,ADD_FRIENDS_TEXTBOX))
+        {
+            UserTapLink("Add friends to messages");
+            UserTapLink("Add friends Never");
+        }
     }
 
     //To be moved in ft-appium in v0.1.8
