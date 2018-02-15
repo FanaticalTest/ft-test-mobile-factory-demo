@@ -1,6 +1,5 @@
 package com.fanaticaltest.fttestmobilefactorydemo.cucumber;
 
-import com.fanaticaltest.ftconfig.Property;
 import com.fanaticaltest.fttestmobilefactorydemo.features.ConfigApp;
 import com.fanaticaltest.ftappium.devices.AndroidRealDevice;
 import cucumber.api.java.After;
@@ -58,5 +57,22 @@ public class ConfigAppSteps extends ConfigApp {
     public void a_user_should_see_the_textbox_with_AndroidConfigApp(String val) throws Exception {
         UserSeeTextBox(val);
     }
+
+    @Then("^a user should see the switch for Enabling social recommendation is \"([^\"]*)\" - AndroidConfigApp$")
+    public void a_user_should_see_the_switch_for_Enabling_social_recommendation_is_AndroidConfigApp(String val) throws Exception {
+        UserSeeSwitchValue(val);
+    }
+
+    @Then("^a user checks if the default value for Enable social recommendations is set to \"([^\"]*)\" - AndroidConfigApp$")
+    public void a_user_check_if_the_default_value_for_Enable_social_recommendations_is_set_to_AndroidConfigApp(String val) throws Exception {
+        CheckDefaultValueEnableSocialRec(val);
+    }
+
+    @When("^a user checks if the default value for Display name is set to \"([^\"]*)\" - AndroidConfigApp$")
+    public void a_user_checks_if_the_default_value_for_Display_name_is_set_to_AndroidConfigApp(String val) throws Exception {
+        CheckDefaultValueDisplayName(val);
+    }
+
+
 
 }
