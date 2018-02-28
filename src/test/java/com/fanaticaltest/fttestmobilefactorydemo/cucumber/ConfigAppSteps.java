@@ -73,6 +73,19 @@ public class ConfigAppSteps extends ConfigApp {
         CheckDefaultValueDisplayName(val);
     }
 
+    @Given("^the initial value for adding friends to message is set at \"([^\"]*)\" - AndroidConfigApp$")
+    public void the_initial_value_for_adding_friends_to_message_is_set_at_AndroidConfigApp(String val) throws Exception {
+        CheckDefaultValueAddFriends(val);
+    }
 
+    @When("^a user change the value for adding friends to message is set at \"([^\"]*)\" - AndroidConfigApp$")
+    public void a_user_change_the_value_for_adding_friends_to_message_is_set_at_AndroidConfigApp(String val) throws Exception {
+        UserChangeAddFriendsValue(val);
+    }
+
+    @Then("^a user should see the value change to \"([^\"]*)\" on the General screen - AndroidConfigApp$")
+    public void a_user_should_see_the_value_change_to_on_the_General_screen_AndroidConfigApp(String val) throws Exception {
+        UserCheckAddFriendsNewValue(val);
+    }
 
 }
