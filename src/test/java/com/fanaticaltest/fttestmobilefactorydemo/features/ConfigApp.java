@@ -24,6 +24,9 @@ public class ConfigApp {
     private final By DISPLAY_NAME_CANCEL = By.id(androidUI.read("androidConfigApp.DisplayName.Cancel"));
     private final By DISPLAY_NAME_OK = By.id(androidUI.read("androidConfigApp.DisplayName.Ok"));
     private final By ENABLE_SOCIAL_REC = By.id(androidUI.read("androidConfigApp.EnableSocialRec.Switch"));
+    private final By ADD_FRIENDS_NEVER = By.xpath(androidUI.read("androidConfigApp.AddFriends.Never"));
+    private final By ADD_FRIENDS_ALWAYS = By.xpath(androidUI.read("androidConfigApp.AddFriends.Always"));
+    private final By ADD_FRIENDS_WHENPOSSIBLE = By.xpath(androidUI.read("androidConfigApp.AddFriends.WhenPossible"));
 
     public AndroidDriver driver;
 
@@ -103,6 +106,46 @@ public class ConfigApp {
         UserTapLink("OK");
     }
 
+    public void CheckDefaultValueAddFriends(String val)
+    {
+        MobUI mobUI = new MobUI(driver);
+        logger.info("Validating default value : " + val + " for Adding Friends");
+
+        if (lookForElementWithText(ADD_FRIENDS_NEVER))
+        {
+            logger.info(mobUI.tapButtonBy(ADD_FRIENDS_NEVER));
+            logger.info("No changes are required");
+        }
+        else if (lookForElementWithText(ADD_FRIENDS_ALWAYS))
+        {
+            logger.info(mobUI.tapButtonBy(ADD_FRIENDS_ALWAYS));
+            logger.info(mobUI.tapButtonBy(ADD_FRIENDS_NEVER));
+            logger.info("Default value updated");
+        }
+        else if (lookForElementWithText(ADD_FRIENDS_WHENPOSSIBLE))
+        {
+            logger.info(mobUI.tapButtonBy(ADD_FRIENDS_WHENPOSSIBLE));
+            logger.info(mobUI.tapButtonBy(ADD_FRIENDS_NEVER));
+            logger.info("Default value updated");
+        }
+
+    }
+
+    public void UserChangeAddFriendsValue(String val)
+    {
+        MobUI mobUI = new MobUI(driver);
+        logger.info("User changes Add friends value to : " + val);
+        logger.info(mobUI.tapButtonBy(ADD_FRIENDS_NEVER));
+        logger.info(mobUI.tapButtonBy(ADD_FRIENDS_ALWAYS));
+    }
+
+    public void UserCheckAddFriendsNewValue(String val)
+    {
+        MobUI mobUI = new MobUI(driver);
+        logger.info("User checks the new value Add friends is equal to : " + val);
+        logger.info(mobUI.assertTextInElementBy(val,ADD_FRIENDS_ALWAYS));
+    }
+
     //To be moved in ft-appium in v0.1.8
     @Deprecated
     private String tapOnOffSwitch(By by)
@@ -123,6 +166,13 @@ public class ConfigApp {
         String currentVal = mobileElement.getText();
         logger.info("Assert Text in element : " + by + " - current text is : " + currentVal + " - and the value should be : " + expectedVal);
         return expectedVal.equals(currentVal);
+    }
+
+    //To be moved in ft-appium in v0.1.8
+    @Deprecated
+    private boolean lookForElementWithText(By by)
+    {
+        return (!driver.findElements(by).isEmpty());
     }
 
 }
