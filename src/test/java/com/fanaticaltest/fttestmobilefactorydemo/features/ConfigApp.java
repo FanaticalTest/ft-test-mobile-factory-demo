@@ -10,6 +10,9 @@ import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.TimeUnit;
+import io.appium.java_client.AppiumDriver;
+
 
 public class ConfigApp {
 
@@ -24,9 +27,7 @@ public class ConfigApp {
     private final By DISPLAY_NAME_CANCEL = By.id(androidUI.read("androidConfigApp.DisplayName.Cancel"));
     private final By DISPLAY_NAME_OK = By.id(androidUI.read("androidConfigApp.DisplayName.Ok"));
     private final By ENABLE_SOCIAL_REC = By.id(androidUI.read("androidConfigApp.EnableSocialRec.Switch"));
-    private final By ADD_FRIENDS_TEXTBOX = By.id(androidUI.read("androidConfigApp.AddFriends.TextBox"));
-    private final By ADD_FRIENDS_NEVER = By.id(androidUI.read("androidConfigApp.AddFriends.Never"));
-    private final By ADD_FRIENDS_ALWAYS = By.id(androidUI.read("androidConfigApp.AddFriends.Always"));
+    private final By ADD_FRIENDS_LINK = By.id(androidUI.read("androidConfigApp.AddFriends.Link"));
 
     public AndroidDriver driver;
 
@@ -70,17 +71,7 @@ public class ConfigApp {
         }
         else if (val.equals("Add friends to messages"))
         {
-            logger.info(mobUI.tapButtonBy(ADD_FRIENDS_TEXTBOX));
-            logger.info(mobUI.freezeProcess(1L));
-        }
-        else if (val.equals("Add friends Never"))
-        {
-            logger.info(mobUI.tapButtonBy(ADD_FRIENDS_NEVER));
-            logger.info(mobUI.freezeProcess(1L));
-        }
-        else if (val.equals("Add friends Always"))
-        {
-            logger.info(mobUI.tapButtonBy(ADD_FRIENDS_ALWAYS));
+            logger.info(mobUI.tapButtonBy(ADD_FRIENDS_LINK));
             logger.info(mobUI.freezeProcess(1L));
         }
     }
@@ -125,11 +116,15 @@ public class ConfigApp {
     {
         MobUI mobUI = new MobUI(driver);
 
-        if (!checkTextInElementBy(val,ADD_FRIENDS_TEXTBOX))
+        //logger.info("Check value of ADD firends message is Never : " + String.valueOf(checkTextInElementBy(val,ADD_FRIENDS_TEXTBOX)));
+        ImplicitWaitInSec(driver,20L);
+        logger.info(mobUI.tapButtonBy(ADD_FRIENDS_LINK));// DISPLAY_NAME_LINK   ADD_FRIENDS_LINK
+
+        /*if (!checkTextInElementBy(val,ADD_FRIENDS_TEXTBOX))
         {
             UserTapLink("Add friends to messages");
             UserTapLink("Add friends Never");
-        }
+        }*/
     }
 
     //To be moved in ft-appium in v0.1.8
@@ -152,6 +147,14 @@ public class ConfigApp {
         String currentVal = mobileElement.getText();
         logger.info("Assert Text in element : " + by + " - current text is : " + currentVal + " - and the value should be : " + expectedVal);
         return expectedVal.equals(currentVal);
+    }
+
+    //To be implement in ft-appium v0.1.8
+    @Deprecated
+    private String ImplicitWaitInSec(AppiumDriver driver, long time)
+    {
+        driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+        return ("Implicit wait set to "+ time +" seconds");
     }
 
 }
